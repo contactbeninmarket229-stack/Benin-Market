@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bénin Market — La marketplace du Bénin 🇧🇯</title>
+<meta name="description" content="Achetez et vendez facilement dans vos 77 communes. L'application marketplace made in Bénin."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --vert: #008751;
+  --vert2: #00a86b;
+  --rouge: #E8112D;
+  --jaune: #FCD116;
+  --noir: #0a0a0a;
+  --gris: #f5f5f0;
+  --blanc: #ffffff;
+  --texte: #1a1a1a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--blanc);
+  color:var(--texte);
+  overflow-x:hidden;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--noir);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0,135,81,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(252,209,22,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 30% at 90% 80%, rgba(232,17,45,0.08) 0%, transparent 50%);
+}
+
+/* Texture grain */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;pointer-events:none;
+}
+
+nav{
+  position:relative;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 6%;
+}
+
+.logo{
+  font-family:'Syne',sans-serif;
+  font-size:1.5rem;font-weight:800;
+  color:var(--blanc);
+  display:flex;align-items:center;gap:10px;
+  letter-spacing:-0.02em;
+}
+
+.logo-flag{font-size:1.4rem;}
+
+.nav-badge{
+  background:rgba(0,135,81,0.2);
+  border:1px solid rgba(0,135,81,0.4);
+  color:var(--vert2);
+  font-size:.75rem;font-weight:500;
+  padding:6px 14px;border-radius:999px;
+  letter-spacing:0.05em;
+}
+
+.hero-content{
+  position:relative;z-index:5;
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 6% 80px;
+}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(252,209,22,0.1);
+  border:1px solid rgba(252,209,22,0.3);
+  color:var(--jaune);
+  font-size:.8rem;font-weight:500;letter-spacing:0.08em;
+  padding:8px 20px;border-radius:999px;
+  margin-bottom:36px;
+  animation:fadeDown .8s ease both;
+}
+
+.hero-tag::before{
+  content:'';width:6px;height:6px;
+  background:var(--jaune);border-radius:50%;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(1.5);}
+}
+
+h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-0.03em;
+  color:var(--blanc);
+  max-width:900px;
+  animation:fadeUp .9s ease .1s both;
+}
+
+h1 .accent{
+  color:transparent;
+  -webkit-text-stroke:2px var(--vert2);
+}
+
+h1 .yellow{color:var(--jaune);}
+
+.hero-sub{
+  margin-top:24px;
+  font-size:clamp(1rem,2vw,1.2rem);
+  font-weight:300;
+  color:rgba(255,255,255,0.55);
+  max-width:560px;line-height:1.7;
+  animation:fadeUp .9s ease .2s both;
+}
+
+.hero-cta{
+  margin-top:48px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .9s ease .3s both;
+}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--vert);
+  color:var(--blanc);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  padding:16px 32px;border-radius:12px;
+  text-decoration:none;
+  transition:all .2s;
+  border:2px solid var(--vert);
+  letter-spacing:0.01em;
+}
+
+.btn-primary:hover{background:var(--vert2);border-color:var(--vert2);transform:translateY(-2px);}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.6);
+  font-size:.9rem;font-weight:400;
+  text-decoration:none;padding:16px 20px;
+  transition:color .2s;
+}
+
+.btn-ghost:hover{color:var(--blanc);}
+
+.hero-stats{
+  margin-top:80px;
+  display:flex;gap:48px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .9s ease .4s both;
+}
+
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2rem;color:var(--blanc);
+}
+.stat-label{
+  font-size:.8rem;color:rgba(255,255,255,0.4);
+  letter-spacing:0.05em;margin-top:4px;
+}
+
+/* ── SCROLL INDICATOR ── */
+.scroll-line{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.3);font-size:.75rem;letter-spacing:0.08em;
+  animation:fadeUp 1s ease .8s both;
+}
+
+.scroll-line::after{
+  content:'';width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse{
+  0%,100%{opacity:.3;transform:scaleY(1);}
+  50%{opacity:1;transform:scaleY(1.2);}
+}
+
+/* ── FEATURES ── */
+.section{padding:100px 6%;}
+
+.section-label{
+  display:inline-block;
+  font-size:.75rem;font-weight:500;letter-spacing:0.12em;
+  color:var(--vert);
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;letter-spacing:-0.02em;
+  line-height:1.1;
+  max-width:640px;
+}
+
+.features{
+  background:var(--gris);
+}
+
+.features-grid{
+  margin-top:64px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2px;
+  background:rgba(0,0,0,0.08);
+  border-radius:20px;overflow:hidden;
+}
+
+.feature-card{
+  background:var(--blanc);
+  padding:40px 36px;
+  transition:background .3s;
+}
+
+.feature-card:hover{background:#fafafa;}
+
+.feature-icon{
+  width:52px;height:52px;
+  background:var(--noir);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:24px;
+}
+
+.feature-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;
+  margin-bottom:10px;
+}
+
+.feature-desc{
+  font-size:.9rem;color:#666;line-height:1.7;font-weight:300;
+}
+
+/* ── HOW IT WORKS ── */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;margin-top:64px;
+}
+
+.step{position:relative;}
+
+.step-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:4rem;color:rgba(0,135,81,0.08);
+  line-height:1;margin-bottom:16px;
+}
+
+.step-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;
+  margin-bottom:8px;
+}
+
+.step-desc{font-size:.88rem;color:#666;line-height:1.7;font-weight:300;}
+
+/* ── SECURITY / FEDAPAY SECTION ── */
+.security{
+  background:var(--noir);
+  color:var(--blanc);
+}
+
+.security .section-label{color:var(--vert2);}
+.security .section-title{color:var(--blanc);}
+
+.security-grid{
+  margin-top:64px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+.security-card{
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:16px;padding:32px;
+  background:rgba(255,255,255,0.03);
+  transition:border-color .3s,background .3s;
+}
+
+.security-card:hover{
+  border-color:rgba(0,135,81,0.4);
+  background:rgba(0,135,81,0.05);
+}
+
+.sec-icon{font-size:1.8rem;margin-bottom:16px;}
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;}
+.sec-desc{font-size:.85rem;color:rgba(255,255,255,0.45);line-height:1.7;font-weight:300;}
+
+/* ── CONTACT ── */
+.contact-block{
+  margin-top:64px;
+  border:1px solid rgba(0,135,81,0.3);
+  border-radius:20px;
+  padding:48px;
+  background:rgba(0,135,81,0.06);
+  display:flex;flex-wrap:wrap;gap:32px;
+  align-items:center;justify-content:space-between;
+}
+
+.contact-text .label{
+  font-size:.75rem;letter-spacing:.1em;color:rgba(255,255,255,0.4);
+  margin-bottom:6px;
+}
+
+.contact-text .value{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;
+  color:var(--blanc);
+}
+
+.contact-divider{
+  width:1px;height:60px;
+  background:rgba(255,255,255,0.08);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--noir);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:40px 6%;
+  display:flex;flex-wrap:wrap;gap:24px;
+  align-items:center;justify-content:space-between;
+}
+
+.footer-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  color:var(--blanc);font-size:1.1rem;
+}
+
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;}
+
+.footer-links a{
+  font-size:.82rem;color:rgba(255,255,255,0.35);
+  text-decoration:none;transition:color .2s;
+}
+
+.footer-links a:hover{color:var(--blanc);}
+
+.footer-copy{
+  font-size:.78rem;color:rgba(255,255,255,0.2);
+}
+
+/* ── FLAG STRIPE ── */
+.flag-stripe{
+  height:5px;
+  background:linear-gradient(to right,var(--vert) 33.3%,var(--jaune) 33.3% 66.6%,var(--rouge) 66.6%);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-16px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── PHONE MOCKUP ── */
+.mockup-wrap{
+  position:relative;
+  display:flex;justify-content:center;
+  margin-top:72px;
+}
+
+.phone{
+  width:260px;
+  background:var(--noir);
+  border-radius:40px;
+  border:2px solid rgba(255,255,255,0.08);
+  padding:16px 12px;
+  box-shadow:0 60px 120px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  position:relative;
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+.phone-screen{
+  background:linear-gradient(160deg,#111 0%,#0d1a12 100%);
+  border-radius:28px;
+  overflow:hidden;
+  padding:20px 16px;
+}
+
+.phone-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+}
+
+.phone-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  color:var(--blanc);font-size:.85rem;
+}
+
+.phone-notch{
+  width:60px;height:6px;
+  background:rgba(255,255,255,0.08);
+  border-radius:999px;
+  margin:0 auto 16px;
+}
+
+.phone-card{
+  background:rgba(255,255,255,0.05);
+  border-radius:12px;padding:12px;
+  margin-bottom:10px;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.phone-card-img{
+  height:80px;
+  background:linear-gradient(135deg,rgba(0,135,81,0.3),rgba(0,135,81,0.1));
+  border-radius:8px;margin-bottom:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+}
+
+.phone-card-title{
+  font-size:.65rem;font-weight:600;color:var(--blanc);
+  font-family:'Syne',sans-serif;
+}
+
+.phone-card-price{
+  font-size:.7rem;color:var(--vert2);font-weight:700;margin-top:2px;
+}
+
+.phone-badge{
+  display:inline-block;
+  background:rgba(0,135,81,0.2);
+  color:var(--vert2);
+  font-size:.5rem;padding:2px 6px;border-radius:4px;
+  font-weight:600;letter-spacing:.05em;margin-bottom:4px;
+}
+
+/* KYC badge sur le phone */
+.kyc-strip{
+  margin-top:12px;
+  background:rgba(252,209,22,0.1);
+  border:1px solid rgba(252,209,22,0.2);
+  border-radius:8px;padding:8px 10px;
+  display:flex;align-items:center;gap:6px;
+}
+
+.kyc-strip span{font-size:.6rem;color:rgba(252,209,22,0.8);}
+
+/* ── APP DOWNLOAD SECTION ── */
+.app-section{
+  text-align:center;
+  padding:100px 6%;
+  background:var(--gris);
+}
+
+.app-stores{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  flex-wrap:wrap;margin-top:40px;
+}
+
+.store-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--noir);color:var(--blanc);
+  padding:14px 24px;border-radius:12px;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:all .2s;
+}
+
+.store-btn:hover{border-color:var(--vert);transform:translateY(-2px);}
+
+.store-btn .store-icon{font-size:1.4rem;}
+.store-btn .store-text{text-align:left;}
+.store-btn .store-sub{font-size:.65rem;color:rgba(255,255,255,0.4);display:block;}
+.store-btn .store-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;}
+
+.coming-badge{
+  font-size:.7rem;background:rgba(0,135,81,0.15);
+  border:1px solid rgba(0,135,81,0.3);color:var(--vert2);
+  padding:3px 8px;border-radius:999px;margin-left:8px;
+  vertical-align:middle;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .contact-block{flex-direction:column;padding:32px 24px;}
+  .contact-divider{display:none;}
+  .hero-stats{gap:32px;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"></div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <nav>
+    <div class="logo">
+      <span class="logo-flag">🇧🇯</span>
+      Bénin Market
+    </div>
+    <span class="nav-badge">BÊTA · 2025</span>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-tag">🛒 La marketplace made in Bénin</div>
+
+    <h1>Achetez &amp; vendez<br/>dans tout le <span class="yellow">Bénin</span></h1>
+
+    <p class="hero-sub">
+      De Cotonou à Parakou, de Natitingou à Porto-Novo —
+      Bénin Market connecte acheteurs et vendeurs dans les 12 départements et 77 communes du pays.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#telecharger" class="btn-primary">
+        📱 Télécharger l'app
+      </a>
+      <a href="#fonctionnalites" class="btn-ghost">
+        En savoir plus →
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">77</div>
+        <div class="stat-label">Communes couvertes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Départements</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">KYC</div>
+        <div class="stat-label">Vendeurs vérifiés</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0 F</div>
+        <div class="stat-label">Pour les acheteurs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-line">SCROLL</div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="section features" id="fonctionnalites">
+  <div class="reveal">
+    <span class="section-label">Fonctionnalités</span>
+    <h2 class="section-title">Tout ce dont vous avez besoin pour vendre au Bénin</h2>
+  </div>
+
+  <div class="features-grid reveal">
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <div class="feature-title">Vendeurs certifiés CIP</div>
+      <p class="feature-desc">Chaque vendeur passe une vérification d'identité via sa carte CIP béninoise. Aucune arnaque, que des professionnels de confiance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📍</div>
+      <div class="feature-title">Géolocalisation précise</div>
+      <p class="feature-desc">Trouvez des annonces dans votre commune, votre département, ou dans tout le Bénin. Filtres par rayon de recherche.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">Messagerie intégrée</div>
+      <p class="feature-desc">Discutez directement avec les vendeurs via WhatsApp ou notre messagerie temps réel intégrée à l'application.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📸</div>
+      <div class="feature-title">Photos HD illimitées</div>
+      <p class="feature-desc">Publiez vos annonces avec plusieurs photos haute définition. Vos produits sont mis en valeur auprès des acheteurs.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <div class="feature-title">Favoris & alertes</div>
+      <p class="feature-desc">Sauvegardez les annonces qui vous intéressent et retrouvez-les facilement, même hors connexion.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <div class="feature-title">Validation intelligente</div>
+      <p class="feature-desc">Notre système détecte automatiquement les prix aberrants et les annonces frauduleuses avant publication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="section" id="comment">
+  <div class="reveal">
+    <span class="section-label">Comment ça marche</span>
+    <h2 class="section-title">Simple comme bonjour</h2>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Créez votre compte</div>
+      <p class="step-desc">Inscrivez-vous avec votre email ou numéro de téléphone. Vérification rapide par email.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Vérification KYC</div>
+      <p class="step-desc">Pour vendre, soumettez votre carte CIP. Notre équipe valide votre identité sous 24–48h.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Publiez votre annonce</div>
+      <p class="step-desc">Photos, description, prix, localisation — votre annonce est visible dans toute la région.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Vendez &amp; encaissez</div>
+      <p class="step-desc">Les acheteurs vous contactent directement. Paiement mobile money ou en main propre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SÉCURITÉ / PAIEMENT ══ -->
+<section class="section security" id="securite">
+  <div class="reveal">
+    <span class="section-label">Confiance &amp; Sécurité</span>
+    <h2 class="section-title">Votre sécurité, notre priorité</h2>
+  </div>
+
+  <div class="security-grid reveal">
+    <div class="security-card">
+      <div class="sec-icon">🛡️</div>
+      <div class="sec-title">Données chiffrées</div>
+      <p class="sec-desc">Toutes vos données personnelles sont stockées de manière sécurisée sur Firebase (Google) avec chiffrement de bout en bout.</p>
+    </div>
+    <div class="security-card">
+      <div class="sec-icon">🪪</div>
+      <div class="sec-title">Vérification CIP</div>
+      <p class="sec-desc">Chaque vendeur est vérifié avec sa carte d'identité nationale béninoise. Aucun inconnu ne peut vendre sur la plateforme.</p>
+    </div>
+    <div class="security-card">
+      <div class="sec-icon">🚩</div>
+      <div class="sec-title">Signalement communautaire</div>
+      <p class="sec-desc">Les utilisateurs peuvent signaler les annonces suspectes. Notre équipe modère et supprime les contenus frauduleux.</p>
+    </div>
+    <div class="security-card">
+      <div class="sec-icon">💳</div>
+      <div class="sec-title">Paiement sécurisé</div>
+      <p class="sec-desc">Les paiements en ligne sont traités par FedaPay, solution de paiement certifiée et reconnue en Afrique de l'Ouest.</p>
+    </div>
+  </div>
+
+  <!-- Bloc contact pour FedaPay -->
+  <div class="contact-block reveal">
+    <div class="contact-text">
+      <div class="label">CONTACT PROFESSIONNEL</div>
+      <div class="value">contact.benin.market229@gmail.com</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-text">
+      <div class="label">SUPPORT WHATSAPP</div>
+      <div class="value">+229 01 48 41 14 14</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-text">
+      <div class="label">DÉVELOPPEUR</div>
+      <div class="value">SOGNON Alexandre</div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-text">
+      <div class="label">PAYS D'OPÉRATION</div>
+      <div class="value">🇧🇯 République du Bénin</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TÉLÉCHARGER ══ -->
+<section class="app-section" id="telecharger">
+  <div class="reveal">
+    <span class="section-label">Disponible maintenant</span>
+    <h2 class="section-title" style="text-align:center;margin:0 auto;">Téléchargez Bénin Market</h2>
+    <p style="margin-top:16px;color:#888;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;">
+      Application gratuite pour Android. Acheteurs : toujours gratuit. Vendeurs : publiez vos 3 premières annonces sans frais.
+    </p>
+  </div>
+
+  <div class="app-stores reveal">
+    <a href="#" class="store-btn">
+      <span class="store-icon">▶</span>
+      <div class="store-text">
+        <span class="store-sub">Disponible sur</span>
+        <span class="store-name">Google Play</span>
+      </div>
+      <span class="coming-badge">Bientôt</span>
+    </a>
+  </div>
+
+  <p style="margin-top:32px;font-size:.8rem;color:#aaa;">
+    📦 Version 1.0.0 (Bêta) · Android 5.0+ · Package : com.sog.benin_market
+  </p>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">🇧🇯 Bénin Market</div>
+  <div class="footer-links">
+    <a href="#fonctionnalites">Fonctionnalités</a>
+    <a href="#comment">Comment ça marche</a>
+    <a href="#securite">Sécurité</a>
+    <a href="mailto:contact.benin.market229@gmail.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Bénin Market · Tous droits réservés</div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Stagger children
+      const kids = e.target.querySelectorAll('.feature-card,.step,.security-card,.contact-text');
+      kids.forEach((k,i) => {
+        k.style.transitionDelay = (i * 0.08) + 's';
+        k.classList.add('reveal','visible');
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
