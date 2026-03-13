@@ -21,7 +21,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 
 body{
   font-family:'DM Sans',sans-serif;
@@ -317,24 +317,37 @@ h1 .yellow{color:var(--jaune);}
   margin-top:64px;
   border:1px solid rgba(0,135,81,0.3);
   border-radius:20px;
-  padding:48px;
+  padding:40px 32px;
   background:rgba(0,135,81,0.06);
-  display:flex;flex-wrap:wrap;gap:32px;
-  align-items:center;justify-content:space-between;
+  display:flex;flex-direction:column;gap:0;
+  width:100%;box-sizing:border-box;
+  overflow:hidden;
+}
+
+.contact-text{
+  padding:18px 0;
+  width:100%;box-sizing:border-box;
 }
 
 .contact-text .label{
-  font-size:.75rem;letter-spacing:.1em;color:rgba(255,255,255,0.4);
-  margin-bottom:6px;
+  font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,0.4);
+  margin-bottom:6px;text-align:center;
 }
 
 .contact-text .value{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;
-  color:var(--blanc);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--blanc);text-align:center;
+  word-break:break-all;overflow-wrap:anywhere;
+  max-width:100%;display:block;
+}
+
+.contact-text .value a{
+  color:var(--vert);text-decoration:none;
+  word-break:break-all;overflow-wrap:anywhere;
 }
 
 .contact-divider{
-  width:1px;height:60px;
+  width:100%;height:1px;
   background:rgba(255,255,255,0.08);
 }
 
@@ -516,8 +529,8 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .contact-block{flex-direction:column;padding:32px 24px;}
-  .contact-divider{display:none;}
+  .contact-block{padding:24px 20px;}
+  .contact-text .value{font-size:.95rem;}
   .hero-stats{gap:32px;}
   footer{flex-direction:column;text-align:center;}
 }
@@ -536,7 +549,7 @@ footer{
       <span class="logo-flag">🇧🇯</span>
       Bénin Market
     </div>
-    <span class="nav-badge">BÊTA · 2025</span>
+    <span class="nav-badge">BÊTA · 2026</span>
   </nav>
 
   <div class="hero-content">
@@ -713,7 +726,7 @@ footer{
     <span class="section-label">Disponible maintenant</span>
     <h2 class="section-title" style="text-align:center;margin:0 auto;">Téléchargez Bénin Market</h2>
     <p style="margin-top:16px;color:#888;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;">
-      Application gratuite pour Android. Acheteurs : toujours gratuit. Vendeurs : publiez vos 3 premières annonces sans frais.
+      Application gratuite pour Android. Acheteurs : toujours gratuit. Vendeurs : publiez vos 25 premières annonces gratuitement.
     </p>
   </div>
 
@@ -740,28 +753,16 @@ footer{
     <a href="#fonctionnalites">Fonctionnalités</a>
     <a href="#comment">Comment ça marche</a>
     <a href="#securite">Sécurité</a>
-    <a href="mailto:contact.benin.market229@gmail.com">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#1d7e7273697c7e69337f7873747333707c6f7678692f2f245d7a707c7471337e7270">Contact</a>
   </div>
-  <div class="footer-copy">© 2025 Bénin Market · Tous droits réservés</div>
+  <div class="footer-copy">© 2026 Bénin Market · Tous droits réservés</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
       // Stagger children
-      const kids = e.target.querySelectorAll('.feature-card,.step,.security-card,.contact-text');
-      kids.forEach((k,i) => {
-        k.style.transitionDelay = (i * 0.08) + 's';
-        k.classList.add('reveal','visible');
-      });
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+      const kids = e.target.querySelectorAll('.feature-card,.step,.secur
