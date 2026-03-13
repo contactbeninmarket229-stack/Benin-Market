@@ -396,10 +396,11 @@ footer{
 }
 
 .reveal{
-  opacity:0;transform:translateY(32px);
+  opacity:1;transform:translateY(0);
   transition:opacity .7s ease,transform .7s ease;
 }
 
+.reveal.animate{opacity:0;transform:translateY(32px);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* ── PHONE MOCKUP ── */
@@ -700,7 +701,7 @@ footer{
   <div class="contact-block reveal">
     <div class="contact-text">
       <div class="label">CONTACT PROFESSIONNEL</div>
-      <div class="value">contact.benin.market229@gmail.com</div>
+      <div class="value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f1fdfce6f3f1e6bcf0f7fcfbfcbcfff3e0f9f7e6a0a0abd2f5fff3fbfebcf1fdff">[email&#160;protected]</a></div>
     </div>
     <div class="contact-divider"></div>
     <div class="contact-text">
@@ -758,11 +759,18 @@ footer{
   <div class="footer-copy">© 2026 Bénin Market · Tous droits réservés</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Scroll reveal
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Scroll reveal — progressive enhancement
+document.querySelectorAll('.reveal').forEach(el => {
+  el.classList.add('animate');
+});
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      // Stagger children
-      const kids = e.target.querySelectorAll('.feature-card,.step,.secur
+      const kids = e.target.querySelectorAll('.feature-card,.step,.security-card');
+      kids.forEach((k,i) => setTimeout(() => k.classList.add('kid-visible'), i*80));
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));t
